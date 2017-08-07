@@ -111,50 +111,77 @@ else
 end
 
 %% All values to output
-out.PAR = PAR;
-out.T = T;
-out.CO2 = CO2;
-out.O2 = O2;
-out.Vcmax = Vcmax;
-out.rm = rm;
-out.Kc = Kc;
-out.Ko = Ko;
-out.G_x = G_x;
-out.Rd = Rd;
-out.Jmax = Jmax;
-out.Tp = Tp;
+out.PAR.val = PAR;
+out.T.val = T;
+out.CO2.val = CO2;
+out.O2.val = O2;
+out.Vcmax.val = Vcmax;
+out.rm.val = rm;
+out.Kc.val = Kc;
+out.Ko.val = Ko;
+out.G_x.val = G_x;
+out.Rd.val = Rd;
+out.Jmax.val = Jmax;
+out.Tp.val = Tp;
 
-out.A = min(min(Ac, Aj), Ap) - Rd;
+out.A.val = min(min(Ac, Aj), Ap) - Rd;
 
-out.Ac = Ac;
-out.Aj = Aj;
-out.Ap = Ap;
+out.Ac.val = Ac;
+out.Aj.val = Aj;
+out.Ap.val = Ap;
 
 %% add units
-u_PAR = sprintf('\x03BCmol m\x207B\x00B2 s\x207B\x00B9');
-u_T = sprintf('\x00B0\x0043');
+out.PAR.units = sprintf('\x03BCmol m\x207B\x00B2 s\x207B\x00B9');
+out.T.units = sprintf('\x00B0\x0043');
+
 u_CO2 = sprintf('ppm | \x03BC bar');
 u_CO2(8)= [];
-u_O2 = 'mbar';
-u_Vcmax = sprintf('\x03BCmol m\x207B\x00B2 s\x207B\x00B9');
-u_rm = sprintf('m\x00B2 s bar mol\x207B\x00B9');
+out.CO2.units = u_CO2;
+
+out.O2.units = 'mbar';
+out.Vcmax.units = sprintf('\x03BCmol m\x207B\x00B2 s\x207B\x00B9');
+out.rm.units = sprintf('m\x00B2 s bar mol\x207B\x00B9');
+
 u_Kc = sprintf('\x03BC bar');
 u_Kc(2)= [];
-u_Ko = 'mbar';
+out.Kc.units = u_Kc;
+
+out.Ko.units = 'mbar';
+
 u_G_x = sprintf('\x03BC bar');
 u_G_x(2)= [];
-u_Rd = sprintf('\x03BCmol m\x207B\x00B2 s\x207B\x00B9');
-u_Jmax = sprintf('\x03BCmol m\x207B\x00B2 s\x207B\x00B9');
-u_Tp = sprintf('\x03BCmol m\x207B\x00B2 s\x207B\x00B9');
+out.G_x.units = u_G_x;
 
-u_A = sprintf('\x03BCmol m\x207B\x00B2 s\x207B\x00B9');
+out.Rd.units = sprintf('\x03BCmol m\x207B\x00B2 s\x207B\x00B9');
+out.Jmax.units = sprintf('\x03BCmol m\x207B\x00B2 s\x207B\x00B9');
+out.Tp.units = sprintf('\x03BCmol m\x207B\x00B2 s\x207B\x00B9');
 
-u_Ac = sprintf('\x03BCmol m\x207B\x00B2 s\x207B\x00B9');
-u_Aj = sprintf('\x03BCmol m\x207B\x00B2 s\x207B\x00B9');
-u_Ap = sprintf('\x03BCmol m\x207B\x00B2 s\x207B\x00B9');
+out.A.units = sprintf('\x03BCmol m\x207B\x00B2 s\x207B\x00B9');
 
-out.units = {u_PAR, u_T, u_CO2, u_O2, u_Vcmax, u_rm, u_Kc, u_Ko, u_G_x,...
-             u_Rd, u_Jmax, u_Tp, u_A, u_Ac, u_Aj, u_Ap};
+out.Ac.units = sprintf('\x03BCmol m\x207B\x00B2 s\x207B\x00B9');
+out.Aj.units = sprintf('\x03BCmol m\x207B\x00B2 s\x207B\x00B9');
+out.Ap.units = sprintf('\x03BCmol m\x207B\x00B2 s\x207B\x00B9');
+
+% out.units = {u_PAR, u_T, u_CO2, u_O2, u_Vcmax, u_rm, u_Kc, u_Ko, u_G_x,...
+%              u_Rd, u_Jmax, u_Tp, u_A, u_Ac, u_Aj, u_Ap};
+
+%% add labels
+out.PAR.lab = 'PAR';
+out.T.lab = 'T';
+out.CO2.lab = 'CO_{2}';
+out.O2.lab = 'O_{2}';
+out.Vcmax.lab = 'Vcmax';
+out.rm.lab = 'rm';
+out.Kc.lab = 'Kc';
+out.Ko.lab = 'Ko';
+out.G_x.lab = sprintf('\x0393\x002A');
+out.Rd.lab = 'Rd';
+out.Jmax.lab = 'Jmax';
+out.Tp.lab = 'Tp';
+out.A.lab = 'A';
+out.Ac.lab = 'Ac';
+out.Aj.lab = 'Aj';
+out.Ap.lab = 'Ap';
 
 %plot(I, min(Ac, Aj), 'DisplayName', sprintf('rm = %1.1f', rm))
 end

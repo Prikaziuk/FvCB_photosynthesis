@@ -42,10 +42,13 @@ f2.Name = 'Output';
 % choosing X axis: one where range is ticked
 x_ax = findobj(f, 'Tag', 'range');
 x = find(flip([x_ax.Value])); % flip because PAR - last, Vcmax - first (older to newer in order of declaration)
+if isempty(x) % no X axis specified
+    x = 1; % plot assimilation
+end
 
 y_ax = findobj(f, 'Tag', 'y axis');
 y_num = find([y_ax.Value]);
-y = y_ax(y_num).String;
+Y_lab = y_ax(y_num).String;
 
 if not_new_figure.Value
     hold on
@@ -54,42 +57,47 @@ else
 end
 
 to_plot = struct2table(out);
-if strcmp(y, sprintf('\x0393\x002A'))
-    y = 'G_x';
+if strcmp(Y_lab, sprintf('\x0393\x002A'))
+    Y_lab = 'G_x';
 end
 
 X = to_plot{:, x};
-Y = to_plot{:, {y}};
+Y = to_plot{:, {Y_lab}};
 
-plot(X,Y)
+plot(X.val, Y.val)
 
-if length(Y) == 1
-    text(X(50), Y, sprintf(['It seems that Farquhar model\n', ...
-        'does not consider this dependency:\nY = %1.1f (const)'], Y), ...
-        'HorizontalAlignment', 'center', 'FontSize', 15)
+if length(Y.val) == 1
+    hold off
+    plot(X.val, Y.val)
+    if length(X.val) == 1
+        text(X.val, Y.val, ...
+            sprintf(['No Range (X axis) was selected\n'...
+            'Was ploted against constant PAR\n\n', ...
+            'X = %1.1f %s (const)\nY = %1.1f %s (const)'], X.val, X.units,...
+            Y.val, Y.units), ...
+            'HorizontalAlignment', 'center', 'FontSize', 15)
+    else
+        text(X.val(50), Y.val, sprintf(['It seems that Farquhar model\n', ...
+            'does not consider this dependency:\nY = %1.1f (const)'], Y.val), ...
+            'HorizontalAlignment', 'center', 'FontSize', 15)
+    end
 else
     legend('show')
 end
 
-units = to_plot{:, {'units'}};
-X_units = units{x};
-X_lab = to_plot.Properties.VariableNames{x};
-if strcmp(X_lab, 'CO2')
-    X_lab = sprintf('CO_{2}');
-elseif strcmp(X_lab, 'O2')
-    X_lab = sprintf('O_{2}');
-end
+% X_lab = to_plot.Properties.VariableNames{x};
+% if strcmp(X_lab, 'CO2')
+%     X_lab = sprintf('CO_{2}');
+% elseif strcmp(X_lab, 'O2')
+%     X_lab = sprintf('O_{2}');
+% end
 
-xlabel(strcat(X_lab, {', '}, X_units))
+xlabel(strcat(X.lab, {', '}, X.units))
 
-
-y_units_num = find(strcmp(y, fieldnames(to_plot)));
-Y_units = units{y_units_num};
-
-if strcmp(y, 'G_x')
-    y = sprintf('\x0393\x002A');
-end
-ylabel(strcat(y, {', '}, Y_units))
+% if strcmp(Y_lab, 'G_x')
+%     Y_lab = sprintf('\x0393\x002A');
+% end
+ylabel(strcat(Y.lab, {', '}, Y.units))
 
 
 end
