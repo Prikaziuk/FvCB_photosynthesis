@@ -8,17 +8,24 @@ font = 10;
 text = uicontrol(f, 'Style', 'text');
 text.String = 'Y axis';
 text.Position(1) = left_as_hold;
-text.Position(2) = UP + BETWEEN_UP * 2;
+text.Position(2) = UP + BETWEEN_UP * 3;
 text.HorizontalAlignment = 'left';
 text.FontSize = font;
 
 Ay = uicontrol(f, 'Style', 'checkbox');
 Ay.String = 'A';
 Ay.Position(1) = left_as_hold;
-Ay.Position(2) = UP + BETWEEN_UP;
+Ay.Position(2) = UP + BETWEEN_UP * 2;
 Ay.Value = Ay.Max;
 Ay.FontSize = font;
 Ay.Tag = 'y axis';
+
+Vcmax = uicontrol(f, 'Style', 'checkbox');
+Vcmax.String = 'Vcmax';
+Vcmax.Position(1) = left_as_hold;
+Vcmax.Position(2) = UP + BETWEEN_UP;
+Vcmax.FontSize = font;
+Vcmax.Tag = 'y axis';
 
 rmy = uicontrol(f, 'Style', 'checkbox');
 rmy.String = 'rm';
@@ -70,6 +77,7 @@ Tpy.FontSize = font;
 Tpy.Tag = 'y axis';
 
 Ay.Callback = {@inactivate_y f};
+Vcmax.Callback = {@inactivate_y f};
 rmy.Callback = {@inactivate_y f};
 Kcy.Callback = {@inactivate_y f};
 Koy.Callback = {@inactivate_y f};
@@ -77,6 +85,7 @@ G_xy.Callback = {@inactivate_y f};
 Rdy.Callback = {@inactivate_y f};
 Jmaxy.Callback = {@inactivate_y f};
 Tpy.Callback = {@inactivate_y f};
+
 
 end
 
