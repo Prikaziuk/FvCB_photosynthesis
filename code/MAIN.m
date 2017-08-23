@@ -36,7 +36,8 @@ UP = UP - BETWEEN_UP;
 [CO2_val, CO2_st, CO2_end, CO2_choice] = CO2_gui(f, UP, LEFT, LEFT_SHIFT);
 
 UP = UP - BETWEEN_UP;
-[O2_val, O2_st, O2_end, O2_choice] = O2_gui(f, UP, LEFT, LEFT_SHIFT);
+%[O2_val, O2_st, O2_end, O2_choice] = O2_gui(f, UP, LEFT, LEFT_SHIFT);
+[Jmax_val, Jmax_st, Jmax_end, Jmax_choice] = Jmax2_gui(f, UP, LEFT, LEFT_SHIFT);
 
 UP = UP - BETWEEN_UP;
 [V_cmax_val, V_cmax_st, V_cmax_end, V_cmax_choice] = Vcmax_gui(f, UP, LEFT, LEFT_SHIFT);
@@ -49,7 +50,8 @@ UP = UP - BETWEEN_UP * 4; % how to make it better?
 [Rd_val] = Rd_gui(f, UP, LEFT, LEFT_SHIFT);
 
 UP = UP - BETWEEN_UP;
-[Jmax_val] = Jmax_gui(f, UP, LEFT, LEFT_SHIFT);
+%[Jmax] = Jmax_gui(f, UP, LEFT, LEFT_SHIFT);
+[O_val] = O_gui(f, UP, LEFT, LEFT_SHIFT);
 
 UP = UP - BETWEEN_UP;
 [Tp_val] = Tp_gui(f, UP, LEFT, LEFT_SHIFT);
@@ -78,11 +80,11 @@ START.FontSize = 14;
 START.Callback = {@start_cb, I_val, I_st, I_end, I_choice ...
                              T_val, T_st, T_end, T_choice, ...
                              CO2_val, CO2_st, CO2_end, CO2_choice, ...
-                             O2_val, O2_st, O2_end, O2_choice, ...
+                             Jmax_val, Jmax_st, Jmax_end, Jmax_choice, ...
                              V_cmax_val, V_cmax_st, V_cmax_end, V_cmax_choice, ...
                              rm_val, Kc_val, Ko_val, ...
                              G_x_val, calculate_G_x, ...
-                             Rd_val, Jmax_val, Tp_val, ...
+                             Rd_val, O_val, Tp_val, ...
                              filename, hold, f};
 
 %% restore to defaults (simply rerun the programme)

@@ -114,14 +114,16 @@ end
 out.PAR.val = PAR;
 out.T.val = T;
 out.CO2.val = CO2;
-out.O2.val = O2;
+%out.O2.val = O2;
+out.Jmax.val = Jmax;
 out.Vcmax.val = Vcmax;
 out.rm.val = rm;
 out.Kc.val = Kc;
 out.Ko.val = Ko;
 out.G_x.val = G_x;
 out.Rd.val = Rd;
-out.Jmax.val = Jmax;
+%out.Jmax.val = Jmax;
+out.O2.val = O2;
 out.Tp.val = Tp;
 
 out.A.val = min(min(Ac, Aj), Ap) - Rd;

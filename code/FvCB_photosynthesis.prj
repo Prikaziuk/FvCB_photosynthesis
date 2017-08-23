@@ -3,7 +3,7 @@
     <param.appname>FvCB_photosynthesis</param.appname>
     <param.icon />
     <param.icons />
-    <param.version>1.0</param.version>
+    <param.version>2.0</param.version>
     <param.authnamewatermark>Prikaziuk Egor</param.authnamewatermark>
     <param.email>e.prikaziuk@utwente.nl</param.email>
     <param.company>ITC</param.company>
@@ -36,7 +36,6 @@
     <unset>
       <param.icon />
       <param.icons />
-      <param.version />
       <param.screenshot />
       <param.guid />
       <param.installpath.string />

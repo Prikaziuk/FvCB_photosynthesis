@@ -1,18 +1,18 @@
 function start_cb(~, ~, I_val, I_st, I_end, I_choice, ...
                         T_val, T_st, T_end, T_choice, ...
                         CO2_val, CO2_st, CO2_end, CO2_choice, ...
-                        O2_val, O2_st, O2_end, O2_choice, ...
+                        Jmax_val, Jmax_st, Jmax_end, Jmax_choice, ...
                         V_cmax_val, V_cmax_st, V_cmax_end, V_cmax_choice, ...
                         rm_val, Kc_val, Ko_val, ...
                         G_x_val, calculate_G_x, ...
-                        Rd_val, Jmax_val, Tp_val, ...
+                        Rd_val, O_val, Tp_val, ...
                         out_filename, not_new_figure, f)
                     
 %% ranges
 PAR = parse_range(I_val, I_st, I_end, I_choice);
 T = parse_range(T_val, T_st, T_end, T_choice);
 CO2 = parse_range(CO2_val, CO2_st, CO2_end, CO2_choice);
-O2 = parse_range(O2_val, O2_st, O2_end, O2_choice);
+Jmax = parse_range(Jmax_val, Jmax_st, Jmax_end, Jmax_choice);
 Vcmax = parse_range(V_cmax_val, V_cmax_st, V_cmax_end, V_cmax_choice);
 
 %% values from edit boxes
@@ -22,7 +22,8 @@ Ko = parse_edit(Ko_val);
 G_x = parse_edit(G_x_val);
 calculate_G_x = logical(calculate_G_x.Value);
 Rd = parse_edit(Rd_val);
-Jmax = parse_edit(Jmax_val);
+%Jmax = parse_edit(Jmax_val);
+O2 = parse_edit(O_val);
 Tp = parse_edit(Tp_val);
 
 %% run model
@@ -59,6 +60,10 @@ end
 to_plot = struct2table(out);
 if strcmp(Y_lab, sprintf('\x0393\x002A'))
     Y_lab = 'G_x';
+elseif strcmp(Y_lab, sprintf('O\x2082'))
+    Y_lab = 'O2';
+elseif strcmp(Y_lab, sprintf('CO\x2082'))
+    Y_lab = 'CO2';
 end
 
 X = to_plot{:, x};

@@ -8,17 +8,38 @@ font = 10;
 text = uicontrol(f, 'Style', 'text');
 text.String = 'Y axis';
 text.Position(1) = left_as_hold;
-text.Position(2) = UP + BETWEEN_UP * 3;
+text.Position(2) = UP + BETWEEN_UP * 6 - 10;
 text.HorizontalAlignment = 'left';
 text.FontSize = font;
 
 Ay = uicontrol(f, 'Style', 'checkbox');
 Ay.String = 'A';
 Ay.Position(1) = left_as_hold;
-Ay.Position(2) = UP + BETWEEN_UP * 2;
+Ay.Position(2) = UP + BETWEEN_UP * 5;
 Ay.Value = Ay.Max;
 Ay.FontSize = font;
 Ay.Tag = 'y axis';
+
+T = uicontrol(f, 'Style', 'checkbox');
+T.String = 'T';
+T.Position(1) = left_as_hold;
+T.Position(2) = UP + BETWEEN_UP * 4;
+T.FontSize = font;
+T.Tag = 'y axis';
+
+CO2 = uicontrol(f, 'Style', 'checkbox');
+CO2.String = sprintf('CO\x2082');
+CO2.Position(1) = left_as_hold;
+CO2.Position(2) = UP + BETWEEN_UP * 3;
+CO2.FontSize = font;
+CO2.Tag = 'y axis';
+
+Jmax = uicontrol(f, 'Style', 'checkbox');
+Jmax.String = 'Jmax';
+Jmax.Position(1) = left_as_hold;
+Jmax.Position(2) = UP + BETWEEN_UP * 2;
+Jmax.FontSize = font;
+Jmax.Tag = 'y axis';
 
 Vcmax = uicontrol(f, 'Style', 'checkbox');
 Vcmax.String = 'Vcmax';
@@ -63,7 +84,7 @@ Rdy.FontSize = font;
 Rdy.Tag = 'y axis';
 
 Jmaxy = uicontrol(f, 'Style', 'checkbox');
-Jmaxy.String = 'Jmax';
+Jmaxy.String = sprintf('O\x2082');
 Jmaxy.Position(1) = left_as_hold;
 Jmaxy.Position(2) = UP - BETWEEN_UP * 5;
 Jmaxy.FontSize = font;
@@ -77,6 +98,9 @@ Tpy.FontSize = font;
 Tpy.Tag = 'y axis';
 
 Ay.Callback = {@inactivate_y f};
+T.Callback = {@inactivate_y f};
+CO2.Callback = {@inactivate_y f};
+Jmax.Callback = {@inactivate_y f};
 Vcmax.Callback = {@inactivate_y f};
 rmy.Callback = {@inactivate_y f};
 Kcy.Callback = {@inactivate_y f};
